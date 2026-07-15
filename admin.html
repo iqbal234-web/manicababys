@@ -12,7 +12,7 @@
     <div class="mb-6">
       <h2 class="font-bold mb-2">Tambah Produk Baru</h2>
       <input id="nama" placeholder="Nama Produk" class="border p-2 rounded w-full mb-2">
-      <input id="harga" placeholder="Harga / hari" class="border p-2 rounded w-full mb-2">
+      <input id="harga" placeholder="Contoh: Rp 25.000" class="border p-2 rounded w-full mb-2">
       <button onclick="tambah()" class="bg-pink-500 text-white px-4 py-2 rounded">Simpan</button>
     </div>
 
@@ -23,11 +23,15 @@
   </div>
 
 <script>
-let produk = [
+let produk = JSON.parse(localStorage.getItem('produkManica')) || [
   {nama: "Stroller Bayi", harga: "Rp 50.000"},
   {nama: "Bouncer Bayi", harga: "Rp 30.000"},
   {nama: "Carseat", harga: "Rp 40.000"}
 ];
+
+function simpan() {
+  localStorage.setItem('produkManica', JSON.stringify(produk));
+}
 
 function tampil() {
   document.getElementById('list').innerHTML = produk.map((p,i) => 
@@ -41,12 +45,12 @@ function tambah() {
   let h = document.getElementById('harga').value;
   if(n && h) {
     produk.push({nama: n, harga: h});
-    tampil();
+    simpan(); tampil();
     document.getElementById('nama').value = '';
     document.getElementById('harga').value = '';
   }
 }
-function hapus(i) { produk.splice(i,1); tampil(); }
+function hapus(i) { produk.splice(i,1); simpan(); tampil(); }
 tampil();
 </script>
 </body>
