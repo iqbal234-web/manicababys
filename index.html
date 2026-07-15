@@ -11,9 +11,7 @@
     <h1 class="text-4xl font-bold text-center text-pink-600 mb-2">Manica Babys</h1>
     <p class="text-center text-gray-600 mb-8">Sewa Stroller, Bouncer, Carseat & Perlengkapan Bayi Lainnya di Kendari</p>
     
-    <div id="produk-list" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-      <!-- Produk akan muncul di sini otomatis -->
-    </div>
+    <div id="produk-list" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"></div>
 
     <div class="text-center">
       <a href="admin.html" class="text-pink-600 underline">Login Admin</a>
@@ -21,11 +19,12 @@
   </div>
 
 <script>
-// Data produk - ini nanti bisa kita hubungin ke admin
-let produk = [
-  {nama: "Stroller Bayi", harga: "Rp 50.000", wa: "Sewa Stroller Bayi"},
-  {nama: "Bouncer Bayi", harga: "Rp 30.000", wa: "Sewa Bouncer Bayi"},
-  {nama: "Carseat", harga: "Rp 40.000", wa: "Sewa Carseat"}
+const NOMOR_WA = "6281543054193"; // GANTI INI DENGAN NOMOR WA KAKAK
+
+let produk = JSON.parse(localStorage.getItem('produkManica')) || [
+  {nama: "Stroller Bayi", harga: "Rp 50.000"},
+  {nama: "Bouncer Bayi", harga: "Rp 30.000"},
+  {nama: "Carseat", harga: "Rp 40.000"}
 ];
 
 function tampilProduk() {
@@ -34,7 +33,7 @@ function tampilProduk() {
     <div class="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
       <h3 class="font-bold text-lg mb-2">${p.nama}</h3>
       <p class="text-pink-600 font-bold mb-3">${p.harga} / hari</p>
-      <a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Manica%20Babys,%20saya%20mau%20${encodeURIComponent(p.wa)}" 
+      <a href="https://wa.me/${NOMOR_WA}?text=Halo%20Manica%20Babys,%20saya%20mau%20sewa%20${encodeURIComponent(p.nama)}" 
          target="_blank" 
          class="bg-green-500 text-white px-4 py-2 rounded-lg block text-center">
          Sewa via WhatsApp
@@ -42,7 +41,6 @@ function tampilProduk() {
     </div>
   `).join('');
 }
-
 tampilProduk();
 </script>
 </body>
