@@ -3,31 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manica Babys - Sewa Perlengkapan Bayi</title>
+<title>Manica Babys - Sewa Perlengkapan Bayi Kendari</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-pink-50">
   <div class="max-w-4xl mx-auto p-6">
-    <h1 class="text-4xl font-bold text-pink-600 text-center mb-4">Manica Babys</h1>
-    <p class="text-center text-gray-600 mb-8">Sewa Stroller, Bouncer, Carseat & Perlengkapan Bayi Lainnya</p>
+    <h1 class="text-4xl font-bold text-center text-pink-600 mb-2">Manica Babys</h1>
+    <p class="text-center text-gray-600 mb-8">Sewa Stroller, Bouncer, Carseat & Perlengkapan Bayi Lainnya di Kendari</p>
     
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="bg-white p-4 rounded-xl shadow">
-        <h3 class="font-bold">Stroller Bayi</h3>
-        <p>Rp 50.000 / hari</p>
-      </div>
-      <div class="bg-white p-4 rounded-xl shadow">
-        <h3 class="font-bold">Bouncer Bayi</h3>
-        <p>Rp 30.000 / hari</p>
-      </div>
-      <div class="bg-white p-4 rounded-xl shadow">
-        <h3 class="font-bold">Carseat</h3>
-        <p>Rp 40.000 / hari</p>
-      </div>
+    <div id="produk-list" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <!-- Produk akan muncul di sini otomatis -->
     </div>
-    <div class="text-center mt-8">
+
+    <div class="text-center">
       <a href="admin.html" class="text-pink-600 underline">Login Admin</a>
     </div>
   </div>
+
+<script>
+// Data produk - ini nanti bisa kita hubungin ke admin
+let produk = [
+  {nama: "Stroller Bayi", harga: "Rp 50.000", wa: "Sewa Stroller Bayi"},
+  {nama: "Bouncer Bayi", harga: "Rp 30.000", wa: "Sewa Bouncer Bayi"},
+  {nama: "Carseat", harga: "Rp 40.000", wa: "Sewa Carseat"}
+];
+
+function tampilProduk() {
+  const list = document.getElementById('produk-list');
+  list.innerHTML = produk.map(p => `
+    <div class="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
+      <h3 class="font-bold text-lg mb-2">${p.nama}</h3>
+      <p class="text-pink-600 font-bold mb-3">${p.harga} / hari</p>
+      <a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Manica%20Babys,%20saya%20mau%20${encodeURIComponent(p.wa)}" 
+         target="_blank" 
+         class="bg-green-500 text-white px-4 py-2 rounded-lg block text-center">
+         Sewa via WhatsApp
+      </a>
+    </div>
+  `).join('');
+}
+
+tampilProduk();
+</script>
 </body>
 </html>
